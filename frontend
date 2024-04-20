@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include the Mapbox JavaScript library -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+  
+  <!-- Include the Mapbox JavaScript library -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
 
-    <!-- Include the Mapbox CSS -->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+  <!-- Include the Mapbox CSS -->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
   <title>Trashcan and Pothole Detection</title>
+  
   <style>
     /* CSS for map container */
     #map {
@@ -48,6 +51,10 @@
       max-width: 300px;
       margin-top: 10px;
     }
+
+    #cameraStream {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -61,8 +68,9 @@
 
   <!-- Camera Section -->
   <h2>Report Issues</h2>
-  <input type="file" accept="image/*" id="fileInput">
   <button onclick="takePicture()">Take Picture</button>
+  <video id="cameraStream"></video>
+  <canvas id="canvas" style="display: none;"></canvas>
   <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
 
   <!-- JavaScript for Trashcan and Pothole Detection web app -->
@@ -84,24 +92,42 @@
 
     // Function to take a picture
     function takePicture() {
-      const fileInput = document.getElementById('fileInput');
-      const preview = document.getElementById('preview');
+      const cameraStream = document.getElementById('cameraStream');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
 
-      fileInput.click();
+      // Try to access the camera
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+          // Display video stream from camera
+          cameraStream.srcObject = stream;
+          cameraStream.play();
+          cameraStream.style.display = 'block';
+          canvas.style.display = 'none';
 
-      fileInput.onchange = () => {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
+          // Add click event listener to the video stream
+          cameraStream.addEventListener('click', function() {
+            // Draw the current frame of the video onto the canvas
+            context.drawImage(cameraStream, 0, 0, canvas.width, canvas.height);
 
-        reader.onloadend = () => {
-          preview.src = reader.result;
-          preview.style.display = 'block';
-        };
+            // Convert canvas content to image data URL
+            const dataURL = canvas.toDataURL('image/png');
 
-        if (file) {
-          reader.readAsDataURL(file);
-        }
-      };
+            // Display the captured image as a preview
+            const preview = document.getElementById('preview');
+            preview.src = dataURL;
+            preview.style.display = 'block';
+
+            // Stop the camera stream
+            cameraStream.srcObject.getVideoTracks().forEach(track => track.stop());
+
+            // Hide the video stream
+            cameraStream.style.display = 'none';
+          });
+        })
+        .catch(function(err) {
+          console.error('Error accessing camera: ' + err);
+        });
     }
   </script>
 

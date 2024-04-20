@@ -13,53 +13,51 @@
   <title>Trashcan and Pothole Detection</title>
   
   <style>
-    /* General styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f2f2f2;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #00185C;
-    }
-
-    /* Map styles */
+    /* CSS for map container */
     #map {
       height: 400px;
       width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
     }
-
-    /* Button styles */
+    
+    body {
+         margin: 0;
+         padding: 0;
+         background-color: #00185C;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+          flex-direction: column;
+         color: #6fe39e;
+        }
+        
+        .logo {
+            max-width: 10%;
+            max-height: 10%;
+            margin-top: 0; /* Remove top margin */
+        }
+    /* CSS for buttons */
     button {
       padding: 10px 20px;
-      margin: 10px auto;
-      background-color: #00185C;
-      color: #fff;
+      margin: 10px;
+      background-color: #4CAF50;
+      color: white;
       border: none;
       cursor: pointer;
       border-radius: 5px;
-      display: block;
     }
 
     button:hover {
-      background-color: #949193;
+      background-color: #45a049;
     }
 
-    /* Camera Section styles */
+    /* CSS for camera section */
     #camera-section {
       margin-top: 20px;
-      text-align: center;
+    }
+
+    #camera-section h2 {
+      margin-bottom: 10px;
     }
 
     #fileInput {
@@ -77,24 +75,21 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Trashcan and Pothole Detection</h1>
-    
-    <!-- Map Section -->
-    <div id="map"></div>
+  <img src="images/logo.jpg" class="logo">
+  <h1>Trashcan and Pothole Detection</h1>
+  
+  <!-- Map Section -->
+  <div id="map"></div>
 
-    <!-- Nearby Trashcans Button -->
-    <button onclick="locateNearbyTrashcans()">Locate Nearby Trashcans</button>
+  <!-- Nearby Trashcans Button -->
+  <button onclick="locateNearbyTrashcans()">Locate Nearby Trashcans</button>
 
-    <!-- Camera Section -->
-    <div id="camera-section">
-      <h2>Report Issues</h2>
-      <button onclick="takePicture()">Take Picture</button>
-      <video id="cameraStream"></video>
-      <canvas id="canvas" style="display: none;"></canvas>
-      <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
-    </div>
-  </div>
+  <!-- Camera Section -->
+  <h2>Report Issues</h2>
+  <button onclick="takePicture()">Take Picture</button>
+  <video id="cameraStream"></video>
+  <canvas id="canvas" style="display: none;"></canvas>
+  <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
 
   <!-- JavaScript for Trashcan and Pothole Detection web app -->
   <script>
@@ -154,4 +149,5 @@
     }
   </script>
 
-</
+</body>
+</html>

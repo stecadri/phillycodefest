@@ -1,6 +1,4 @@
 # Civitas
-
-#### Philly Codefest Project
-
-
+#### Philly Codefest Project 
+### Team: Gary Snipes, Stefano C. Maarij Khan
 

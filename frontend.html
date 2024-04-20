@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trashcan and Pothole Detection</title>
   
   <!-- Include the Mapbox JavaScript library -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
@@ -10,8 +11,6 @@
   <!-- Include the Mapbox CSS -->
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
 
-  <title>Trashcan and Pothole Detection</title>
-  
   <style>
     /* CSS for map container */
     #map {
@@ -72,6 +71,45 @@
     #cameraStream {
       display: none;
     }
+
+    /* CSS for slider container */
+    .slider-container {
+      margin-top: 20px;
+    }
+
+    .slider-container label {
+      display: block;
+      margin-bottom: 5px;
+      color: white;
+    }
+
+    .slider-container input[type="range"] {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 10px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+    }
+
+    .slider-container input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+      margin-top: -7px; /* Adjusts vertical alignment */
+    }
+
+    .slider-container input[type="range"]::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -91,6 +129,13 @@
   <canvas id="canvas" style="display: none;"></canvas>
   <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
 
+  <!-- Slider Section -->
+  <div class="slider-container">
+    <label for="trashcanFullness">Trashcan Fullness:</label>
+    <input type="range" id="trashcanFullness" min="0" max="100" value="50">
+    <div id="sliderValue">50%</div>
+  </div>
+
   <!-- JavaScript for Trashcan and Pothole Detection web app -->
   <script>
     // Initialize Mapbox map
@@ -101,6 +146,16 @@
       center: [-75.1652, 39.9526], // starting position [lng, lat]
       zoom: 12 // starting zoom
     });
+
+    // Get slider and slider value elements
+    var slider = document.getElementById("trashcanFullness");
+    var sliderValue = document.getElementById("sliderValue");
+
+    // Update slider value and percentage display
+    slider.oninput = function() {
+      var value = this.value;
+      sliderValue.innerHTML = value + "%";
+    };
 
     // Function to locate nearby trashcans
     function locateNearbyTrashcans() {
@@ -148,6 +203,5 @@
         });
     }
   </script>
-
 </body>
 </html>

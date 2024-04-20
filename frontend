@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trashcan and Pothole Detection</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Trashcan and Pothole Detection</h1>
+  
+  <!-- Map Section -->
+  <div id="map"></div>
+
+  <!-- Nearby Trashcans Button -->
+  <button onclick="locateNearbyTrashcans()">Locate Nearby Trashcans</button>
+
+  <!-- Camera Section -->
+  <h2>Report Issues</h2>
+  <input type="file" accept="image/*" id="fileInput">
+  <button onclick="takePicture()">Take Picture</button>
+  <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
+
+  <script>
+    // Function to initialize the map
+    function initMap() {
+      // Initialize map centered on Philadelphia
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 39.9526, lng: -75.1652 },
+        zoom: 12,
+      });
+    }
+
+    // Function to locate nearby trashcans
+    function locateNearbyTrashcans() {
+      // Implement logic to locate nearby trashcans and update map markers
+      alert("Locating nearby trashcans...");
+    }
+
+    // Function to take a picture
+    function takePicture() {
+      const fileInput = document.getElementById('fileInput');
+      const preview = document.getElementById('preview');
+
+      fileInput.click();
+
+      fileInput.onchange = () => {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          preview.src = reader.result;
+          preview.style.display = 'block';
+        };
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+  </script>
+
+  <!-- Google Maps API -->
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+  </script>
+</body>
+</html>
 

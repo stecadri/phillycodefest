@@ -13,34 +13,53 @@
   <title>Trashcan and Pothole Detection</title>
   
   <style>
-    /* CSS for map container */
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #00185C;
+    }
+
+    /* Map styles */
     #map {
       height: 400px;
       width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
-    /* CSS for buttons */
+    /* Button styles */
     button {
       padding: 10px 20px;
-      margin: 10px;
-      background-color: #4CAF50;
-      color: white;
+      margin: 10px auto;
+      background-color: #00185C;
+      color: #fff;
       border: none;
       cursor: pointer;
       border-radius: 5px;
+      display: block;
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #949193;
     }
 
-    /* CSS for camera section */
+    /* Camera Section styles */
     #camera-section {
       margin-top: 20px;
-    }
-
-    #camera-section h2 {
-      margin-bottom: 10px;
+      text-align: center;
     }
 
     #fileInput {
@@ -58,20 +77,24 @@
   </style>
 </head>
 <body>
-  <h1>Trashcan and Pothole Detection</h1>
-  
-  <!-- Map Section -->
-  <div id="map"></div>
+  <div class="container">
+    <h1>Trashcan and Pothole Detection</h1>
+    
+    <!-- Map Section -->
+    <div id="map"></div>
 
-  <!-- Nearby Trashcans Button -->
-  <button onclick="locateNearbyTrashcans()">Locate Nearby Trashcans</button>
+    <!-- Nearby Trashcans Button -->
+    <button onclick="locateNearbyTrashcans()">Locate Nearby Trashcans</button>
 
-  <!-- Camera Section -->
-  <h2>Report Issues</h2>
-  <button onclick="takePicture()">Take Picture</button>
-  <video id="cameraStream"></video>
-  <canvas id="canvas" style="display: none;"></canvas>
-  <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
+    <!-- Camera Section -->
+    <div id="camera-section">
+      <h2>Report Issues</h2>
+      <button onclick="takePicture()">Take Picture</button>
+      <video id="cameraStream"></video>
+      <canvas id="canvas" style="display: none;"></canvas>
+      <img src="" id="preview" alt="Preview" style="display: none; max-width: 300px; margin-top: 10px;">
+    </div>
+  </div>
 
   <!-- JavaScript for Trashcan and Pothole Detection web app -->
   <script>
@@ -131,5 +154,4 @@
     }
   </script>
 
-</body>
-</html>
+</

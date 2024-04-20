@@ -65,10 +65,10 @@
     }
   </script>
 
-  <!-- Google Maps API -->
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-  </script>
+<!-- Google Maps API -->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRK2HcujRoPcgl_-h6fwyQ67-XGIjGvV0&callback=initMap">
+</script>
 </body>
 </html>
 

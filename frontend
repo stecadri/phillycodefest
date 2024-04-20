@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include the Mapbox JavaScript library -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+
+    <!-- Include the Mapbox CSS -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
   <title>Trashcan and Pothole Detection</title>
   <style>
     /* CSS for map container */
@@ -100,10 +105,5 @@
     }
   </script>
 
-  <!-- Include the Mapbox JavaScript library -->
-  <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
-
-  <!-- Include the Mapbox CSS -->
-  <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
 </body>
 </html>
